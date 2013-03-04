@@ -25,7 +25,6 @@ app.use express.logger
   format: "ns=\"template\" measure=\"http.:method\" source=\":url\" status=\":status\" elapsed=\":response-time\" from=\":remote-addr\" agent=\":user-agent\""
 app.use express.cookieParser()
 app.use express.bodyParser()
-#app.use express.basicAuth (user, pass, cb) -> cb(null, pass)
 app.use app.router
 app.use (err, req, res, next) -> res.send 500, (if err.message? then err.message else err)
 
@@ -38,11 +37,6 @@ app.get "/ca.pem", (req, res) ->
 
 port   = process.env.PORT || 5000
 server = http.createServer()
-
-# TODO: create https
-# openssl genrsa -out server-key.pem 1024
-# openssl req -new -key server-key.pem -out server-csr.pem
-# openssl x509 -req -in server-csr.pem -signkey server-key.pem -out server-cert.pem
 
 ca.initialize_certificates ->
   log.start "listen", (log) ->
