@@ -1,7 +1,6 @@
 async   = require("async")
 ca      = require("./lib/ca").init()
 coffee  = require("coffee-script")
-express = require("express")
 http    = require("http")
 https   = require("https")
 log     = require("./lib/logger").init("pathfinder")
@@ -11,29 +10,6 @@ url     = require("url")
 
 delay = (ms, cb) -> setTimeout  cb, ms
 every = (ms, cb) -> setInterval cb, ms
-
-express.logger.format "method",     (req, res) -> req.method.toLowerCase()
-express.logger.format "url",        (req, res) -> req.url.replace('"', "&quot")
-express.logger.format "user-agent", (req, res) -> (req.headers["user-agent"] || "").replace('"', "")
-
-app = express()
-
-app.disable "x-powered-by"
-
-app.use express.logger
-  buffer: false
-  format: "ns=\"template\" measure=\"http.:method\" source=\":url\" status=\":status\" elapsed=\":response-time\" from=\":remote-addr\" agent=\":user-agent\""
-app.use express.cookieParser()
-app.use express.bodyParser()
-app.use app.router
-app.use (err, req, res, next) -> res.send 500, (if err.message? then err.message else err)
-
-app.get "/", (req, res) ->
-  res.send '<a href="/ca.pem">CA Certificate</a>'
-
-app.get "/ca.pem", (req, res) ->
-  res.setHeader "Content-Type", "application/x-pem-file"
-  res.send ca.ca_certificate()
 
 port   = process.env.PORT || 5000
 server = http.createServer()

@@ -5,7 +5,6 @@
   "dependencies": {
     "async":         "0.2.x",
     "coffee-script": "1.2.x",
-    "express":       "3.1.x",
     "nodemon":       "0.7.x",
     "node-fs":       "0.1.x",
     "node-uuid":     "1.4.x",
