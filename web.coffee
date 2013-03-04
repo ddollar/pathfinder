@@ -29,7 +29,7 @@ app.use app.router
 app.use (err, req, res, next) -> res.send 500, (if err.message? then err.message else err)
 
 app.get "/", (req, res) ->
-  res.send '<a href="/ca.pem">Certificate</a>'
+  res.send '<a href="/ca.pem">CA Certificate</a>'
 
 app.get "/ca.pem", (req, res) ->
   res.setHeader "Content-Type", "application/x-pem-file"
