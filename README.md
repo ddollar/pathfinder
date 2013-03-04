@@ -4,10 +4,10 @@ Become a MITM proxy for an iPhone in order to grab authentication credentials fo
 
 ## Installation
 
-$ git clone https://github.com/ddollar/pathfinder.git
-$ cd pathfinder
-$ npm install
-$ foreman start
+    $ git clone https://github.com/ddollar/pathfinder.git
+    $ cd pathfinder
+    $ npm install
+    $ foreman start
 
 Navigate to [http://localhost:5000/](http://localhots:5000/) on your iPhone and click the `CA Certificate` link. This will prompt you to trust this CA on your iPhone. Do so.
 
